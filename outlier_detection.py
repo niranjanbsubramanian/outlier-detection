@@ -17,5 +17,15 @@ print(z_score)
 print(sum(abs(z_score > 3))) # using the absolute value
 
 
+# Local Outlier Factor
+from sklearn.neighbors import LocalOutlierFactor
+lof = LocalOutlierFactor(n_neighbors=15)
+out = lof.fit_predict(data1)
+print(out)
 
+print(sum(out == -1))
+
+col = np.array(['r', 'b'])
+plt.scatter(data['YearsExperience'], data['Salary'], c=col[(out + 1) // 2])
+plt.show()
 
